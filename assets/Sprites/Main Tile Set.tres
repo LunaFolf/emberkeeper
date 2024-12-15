@@ -1,0 +1,53 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://ck08vum6mgg6p"]
+
+[ext_resource type="Texture2D" uid="uid://dgbnmxu68opsk" path="res://assets/Sprites/tm_world.png" id="1_cnkry"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_delj3"]
+texture = ExtResource("1_cnkry")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/texture_origin = Vector2i(0, -16)
+1:0/0 = 0
+1:0/0/texture_origin = Vector2i(0, -16)
+1:0/0/y_sort_origin = -16
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -16, 32, 0, 0, 16, -32, 0)
+2:0/0 = 0
+2:0/0/texture_origin = Vector2i(0, -16)
+2:0/0/y_sort_origin = -16
+3:0/0 = 0
+3:0/0/texture_origin = Vector2i(0, -16)
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(24, 10, 32, 6, 32, 0, 32, -16, -8, -16, -8, -6)
+4:0/0 = 0
+4:0/0/texture_origin = Vector2i(0, -16)
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -16, -32, 6, -24, 10, 8, -6, 8, -16, -8, -16)
+5:0/0 = 0
+5:0/0/texture_origin = Vector2i(0, -16)
+5:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -16, -32, 8, -24, 12, 0, 0, 24, 12, 32, 8, 32, -16, -8, -16)
+0:1/0 = 0
+0:1/0/texture_origin = Vector2i(0, -16)
+1:1/0 = 0
+1:1/0/texture_origin = Vector2i(0, -16)
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -16, 32, 0, 0, 16, -32, 0)
+3:1/0 = 0
+3:1/0/texture_origin = Vector2i(0, -16)
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 6, -8, 48, 32, 48, 32, 16, 0, 0)
+4:1/0 = 0
+4:1/0/texture_origin = Vector2i(0, -16)
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 16, -32, 32, -32, 48, 8, 48, 8, 4, 0, 0)
+5:1/0 = 0
+5:1/0/texture_origin = Vector2i(0, -16)
+5:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, 16, -32, 32, -32, 48, 0, 48, 32, 48, 32, 16, 8, 4, 0, 0)
+0:2/0 = 0
+0:2/0/texture_origin = Vector2i(0, -16)
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 6, 20, 12, 20, 18, 16, 22, 4, 26, -8, 26, -12, 24, -20, 20, -24, 16, -20, 12, -16, 8, -8, 6)
+1:2/0 = 0
+1:2/0/texture_origin = Vector2i(0, -16)
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(0, -16, 32, 0, 0, 16, -32, 0)
+
+[resource]
+tile_shape = 1
+tile_layout = 5
+tile_offset_axis = 1
+tile_size = Vector2i(64, 32)
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_delj3")

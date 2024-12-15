@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://bqyc2le4weldh"]
+
+[ext_resource type="Script" path="res://scripts/Elf.cs" id="1_cdstx"]
+[ext_resource type="SpriteFrames" uid="uid://c1spsw138r5ny" path="res://assets/Sprites/as_elf.tres" id="3_itxvq"]
+[ext_resource type="FontFile" uid="uid://bx1p5taqg5iof" path="res://assets/fonts/PixelOperator8.ttf" id="3_jl75k"]
+
+[node name="Elf" type="Node2D" node_paths=PackedStringArray("ColdTimer", "WorkTimer", "Sprite", "ColdLevelLabel")]
+script = ExtResource("1_cdstx")
+ColdTimer = NodePath("ColdTimer")
+WorkTimer = NodePath("WorkTimer")
+Sprite = NodePath("AnimatedSprite2D")
+ColdLevelLabel = NodePath("ColdLevelLabel")
+
+[node name="ColdLevelLabel" type="Label" parent="."]
+offset_left = -20.0
+offset_top = -37.0
+offset_right = 20.0
+offset_bottom = -14.0
+theme_override_fonts/font = ExtResource("3_jl75k")
+theme_override_font_sizes/font_size = 8
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("3_itxvq")
+animation = &"working"
+autoplay = "working"
+
+[node name="ColdTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="WorkTimer" type="Timer" parent="."]
+autostart = true

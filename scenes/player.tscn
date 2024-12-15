@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://bi3sts0x6jnla"]
+
+[ext_resource type="Script" path="res://scripts/Player.cs" id="1_60tig"]
+[ext_resource type="SpriteFrames" uid="uid://c1spsw138r5ny" path="res://assets/Sprites/as_elf.tres" id="2_5me4f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_47knc"]
+radius = 7.0
+height = 28.0
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_60tig")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -14)
+shape = SubResource("CapsuleShape2D_47knc")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(2, 2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -15)
+sprite_frames = ExtResource("2_5me4f")
