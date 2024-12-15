@@ -1,11 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bqyc2le4weldh"]
+[gd_scene load_steps=8 format=3 uid="uid://d2yiqcg8n0mcn"]
 
-[ext_resource type="Script" path="res://scripts/Elf.cs" id="1_cdstx"]
-[ext_resource type="FontFile" uid="uid://bx1p5taqg5iof" path="res://assets/fonts/PixelOperator8.ttf" id="3_jl75k"]
-[ext_resource type="SpriteFrames" uid="uid://csupm14exvb0o" path="res://assets/sprites/as_elf.tres" id="3_yel3p"]
+[ext_resource type="SpriteFrames" uid="uid://b65wlth2vxm7r" path="res://assets/sprites/as_stove.tres" id="1_0wso2"]
+[ext_resource type="Script" path="res://scripts/WoodStove.cs" id="1_hp0av"]
+[ext_resource type="FontFile" uid="uid://bx1p5taqg5iof" path="res://assets/fonts/PixelOperator8.ttf" id="3_xcc7x"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5gj0g"]
-radius = 19.0263
+[sub_resource type="CircleShape2D" id="CircleShape2D_gsiiv"]
+radius = 33.1361
 
 [sub_resource type="Animation" id="Animation_2iefb"]
 length = 0.001
@@ -108,37 +108,34 @@ _data = {
 "blinky": SubResource("Animation_4gg3g")
 }
 
-[node name="Elf" type="Node2D" node_paths=PackedStringArray("ColdTimer", "WorkTimer", "Area2D", "AnimationPlayer", "Sprite", "ColdLevelLabel")]
-script = ExtResource("1_cdstx")
-ColdTimer = NodePath("ColdTimer")
-WorkTimer = NodePath("WorkTimer")
+[node name="WoodStove" type="Node2D" node_paths=PackedStringArray("Sprite", "Timer", "CoalCountLabel", "Area2D", "AnimationPlayer")]
+script = ExtResource("1_hp0av")
+Sprite = NodePath("AnimatedSprite2D")
+Timer = NodePath("Timer")
+CoalCountLabel = NodePath("CoalCountLabel")
 Area2D = NodePath("Area2D")
 AnimationPlayer = NodePath("AnimationPlayer")
-Sprite = NodePath("AnimatedSprite2D")
-ColdLevelLabel = NodePath("ColdLevelLabel")
 
-[node name="ColdLevelLabel" type="Label" parent="."]
-offset_left = -20.0
-offset_top = -51.0
-offset_right = 20.0
-offset_bottom = -28.0
-theme_override_colors/font_color = Color(0.31, 0.8045, 1, 1)
-theme_override_fonts/font = ExtResource("3_jl75k")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -32)
+sprite_frames = ExtResource("1_0wso2")
+animation = &"off"
+autoplay = "off"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+autostart = true
+
+[node name="CoalCountLabel" type="Label" parent="."]
+offset_left = -26.0
+offset_top = -25.0
+offset_right = 14.0
+offset_bottom = -2.0
+theme_override_fonts/font = ExtResource("3_xcc7x")
 theme_override_font_sizes/font_size = 8
 text = "0"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -14)
-sprite_frames = ExtResource("3_yel3p")
-autoplay = "working"
-
-[node name="ColdTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="WorkTimer" type="Timer" parent="."]
-autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
@@ -146,7 +143,7 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -17)
-shape = SubResource("CircleShape2D_5gj0g")
+shape = SubResource("CircleShape2D_gsiiv")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

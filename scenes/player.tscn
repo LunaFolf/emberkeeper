@@ -1,22 +1,44 @@
-[gd_scene load_steps=4 format=3 uid="uid://bi3sts0x6jnla"]
+[gd_scene load_steps=5 format=3 uid="uid://bi3sts0x6jnla"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_60tig"]
-[ext_resource type="SpriteFrames" uid="uid://c1spsw138r5ny" path="res://assets/Sprites/as_elf.tres" id="2_5me4f"]
+[ext_resource type="SpriteFrames" uid="uid://c1spsw138r5ny" path="res://assets/sprites/as_player.tres" id="2_5846p"]
+[ext_resource type="FontFile" uid="uid://bx1p5taqg5iof" path="res://assets/fonts/PixelOperator8.ttf" id="3_kxeet"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_47knc"]
 radius = 7.0
 height = 28.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("InteractTimer", "Sprite", "CoalCountLabel")]
+z_index = 1
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_60tig")
+InteractTimer = NodePath("InteractTimer")
+Sprite = NodePath("AnimatedSprite2D")
+CoalCountLabel = NodePath("CoalCountLabel")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -14)
 shape = SubResource("CapsuleShape2D_47knc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -14)
 zoom = Vector2(2, 2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -15)
-sprite_frames = ExtResource("2_5me4f")
+sprite_frames = ExtResource("2_5846p")
+animation = &"working"
+
+[node name="InteractTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CoalCountLabel" type="Label" parent="."]
+offset_left = 10.0
+offset_top = -25.0
+offset_right = 50.0
+offset_bottom = -2.0
+theme_override_colors/font_color = Color(0.147672, 0.147672, 0.147672, 1)
+theme_override_fonts/font = ExtResource("3_kxeet")
+theme_override_font_sizes/font_size = 8
+vertical_alignment = 1
