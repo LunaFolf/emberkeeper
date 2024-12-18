@@ -1,14 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi3sts0x6jnla"]
+[gd_scene load_steps=7 format=3 uid="uid://bi3sts0x6jnla"]
 
 [ext_resource type="Script" path="res://scripts/Player.cs" id="1_60tig"]
 [ext_resource type="SpriteFrames" uid="uid://c1spsw138r5ny" path="res://assets/sprites/as_player.tres" id="2_5846p"]
 [ext_resource type="FontFile" uid="uid://bx1p5taqg5iof" path="res://assets/fonts/PixelOperator8.ttf" id="3_kxeet"]
+[ext_resource type="AudioStream" uid="uid://cgu0i3vtqmtpb" path="res://assets/sounds/step_wood.wav" id="4_km2e4"]
+[ext_resource type="AudioStream" uid="uid://xj08u05pl8su" path="res://assets/sounds/music/NKM-G-15-31-1676283276-0-429643-72-96-3-2773-46-0-11-102-11-102-47-121-33-121-0-0-0.mp3" id="5_li344"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_47knc"]
 radius = 7.0
 height = 28.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("InteractTimer", "Sprite", "CoalCountLabel")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("InteractTimer", "Sprite", "CoalCountLabel", "StepSoundPlayer", "StepTimer")]
 z_index = 1
 collision_layer = 3
 collision_mask = 3
@@ -16,6 +18,8 @@ script = ExtResource("1_60tig")
 InteractTimer = NodePath("InteractTimer")
 Sprite = NodePath("AnimatedSprite2D")
 CoalCountLabel = NodePath("CoalCountLabel")
+StepSoundPlayer = NodePath("StepSoundPlayer")
+StepTimer = NodePath("StepTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -14)
@@ -31,6 +35,7 @@ sprite_frames = ExtResource("2_5846p")
 animation = &"working"
 
 [node name="InteractTimer" type="Timer" parent="."]
+wait_time = 0.25
 one_shot = true
 
 [node name="CoalCountLabel" type="Label" parent="."]
@@ -42,3 +47,16 @@ theme_override_colors/font_color = Color(0.147672, 0.147672, 0.147672, 1)
 theme_override_fonts/font = ExtResource("3_kxeet")
 theme_override_font_sizes/font_size = 8
 vertical_alignment = 1
+
+[node name="StepTimer" type="Timer" parent="."]
+wait_time = 0.35
+autostart = true
+
+[node name="StepSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_km2e4")
+bus = &"SFX"
+
+[node name="Music" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_li344")
+autoplay = true
+bus = &"Music"

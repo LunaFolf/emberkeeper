@@ -11,12 +11,17 @@ public partial class Player : CharacterBody2D
     private bool _playerIsInteracting = false;
 
     private int _coalCount = 0;
+    private string _floorSound;
 
-    [Export] public float Speed = 200f;
+    [Export] public float Speed = 170f;
 
     [Export] public Timer InteractTimer;
     [Export] public AnimatedSprite2D Sprite;
     [Export] public Label CoalCountLabel;
+    [Export] public AudioStreamPlayer2D StepSoundPlayer;
+    [Export] public Timer StepTimer;
+
+    [Export] public TileMapLayer FloorLayer;
 
     public int CoalCount
     {
@@ -33,25 +38,31 @@ public partial class Player : CharacterBody2D
     public override void _Ready()
     {
         InteractTimer.Timeout += OnInteractTimerTimeout;
+        StepTimer.Timeout += OnStepTimerTimeout;
     }
 
     public override void _PhysicsProcess(double delta)
     {
+        var velocity = Velocity;
+
         if (!_playerIsInteracting)
         {
             var directionHorizontal = Input.GetAxis("move_left", "move_right");
             var directionVertical = Input.GetAxis("move_up", "move_down");
-
-            var velocity = Velocity;
 
             if (directionHorizontal != 0) velocity.X = Speed * directionHorizontal;
             else velocity.X = Mathf.MoveToward(velocity.X, 0, Speed);
 
             if (directionVertical != 0) velocity.Y = Speed * directionVertical;
             else velocity.Y = Mathf.MoveToward(velocity.Y, 0, Speed);
-
-            Velocity = velocity;
         }
+        else
+        {
+            velocity.X = Mathf.MoveToward(velocity.X, 0, Speed);
+            velocity.Y = Mathf.MoveToward(velocity.Y, 0, Speed);
+        }
+
+        Velocity = velocity;
 
         MoveAndSlide();
     }
@@ -75,6 +86,29 @@ public partial class Player : CharacterBody2D
             Sprite.Play("working");
             InteractTimer.Start();
         }
+
+        if (FloorLayer != null)
+        {
+            var cell = FloorLayer.LocalToMap(Position);
+            var cellData = FloorLayer.GetCellTileData(cell);
+            var floorSound = cellData?.GetCustomData("Sound");
+
+            if (floorSound != null && _floorSound != (string)floorSound)
+            {
+                _floorSound = (string)floorSound;
+                var floorSoundStream = GD.Load<AudioStream>($"res://assets/sounds/step_{_floorSound}.wav");
+                if (floorSoundStream != null) StepSoundPlayer.Stream = floorSoundStream;
+            }
+        }
+    }
+
+    private void OnStepTimerTimeout()
+    {
+        GD.Print(Velocity);
+        if (Velocity.IsZeroApprox()) return;
+
+        StepSoundPlayer.PitchScale = (float)GD.RandRange(0.9f, 1.1f);
+        StepSoundPlayer.Play();
     }
 
     private void OnInteractTimerTimeout()

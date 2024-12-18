@@ -18,28 +18,81 @@ tile_map_data = PackedByteArray("AAD+////AAAFAAEAAAD/////AAADAAEAAAAAAP//AAADAAE
 tile_set = ExtResource("1_kc0s0")
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="."]
-tile_map_data = PackedByteArray("AAAAAAEAAAADAAAAAAAAAAQAAAADAAAAAAAAAAcAAAADAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAEAAAADAAAAAAAAAAQAAAADAAAAAAAAAAcAAAADAAAAAAACAAcAAAADAAAAAAAEAAcAAAADAAAAAAACAAQAAAADAAAAAAACAAEAAAADAAAAAAAEAAQAAAADAAAAAAAEAAEAAAADAAAAAAA=")
 tile_set = ExtResource("2_7y13j")
 
-[node name="Player" parent="." instance=ExtResource("3_t1lro")]
-position = Vector2(-6, 153)
-
-[node name="Elf" parent="." node_paths=PackedStringArray("NearestWoodStove") instance=ExtResource("4_hphow")]
-position = Vector2(-197, 157)
-NearestWoodStove = NodePath("../WoodStove")
-
-[node name="WoodStove" parent="." instance=ExtResource("5_bfg1u")]
-position = Vector2(-235, 172)
-
-[node name="Elf2" parent="." node_paths=PackedStringArray("NearestWoodStove") instance=ExtResource("4_hphow")]
-position = Vector2(-100, 110)
-NearestWoodStove = NodePath("../WoodStove2")
-
-[node name="WoodStove2" parent="." instance=ExtResource("5_bfg1u")]
-position = Vector2(-140, 125)
-
-[node name="WoodStove3" parent="." instance=ExtResource("5_bfg1u")]
-position = Vector2(-42, 76)
+[node name="Player" parent="." node_paths=PackedStringArray("FloorLayer") instance=ExtResource("3_t1lro")]
+position = Vector2(93, 214)
+FloorLayer = NodePath("../TileMapLayer")
 
 [node name="CoalPile" parent="." instance=ExtResource("6_2o48x")]
 position = Vector2(251, 196)
+
+[node name="Row1" type="Node" parent="."]
+
+[node name="Elf" parent="Row1" node_paths=PackedStringArray("NearestWoodStove") instance=ExtResource("4_hphow")]
+position = Vector2(-197, 157)
+NearestWoodStove = NodePath("../WoodStove")
+
+[node name="WoodStove" parent="Row1" instance=ExtResource("5_bfg1u")]
+position = Vector2(-235, 172)
+
+[node name="Elf2" parent="Row1" node_paths=PackedStringArray("NearestWoodStove") instance=ExtResource("4_hphow")]
+position = Vector2(-100, 110)
+NearestWoodStove = NodePath("../WoodStove2")
+
+[node name="WoodStove2" parent="Row1" instance=ExtResource("5_bfg1u")]
+position = Vector2(-140, 125)
+
+[node name="Elf3" parent="Row1" node_paths=PackedStringArray("NearestWoodStove") instance=ExtResource("4_hphow")]
+position = Vector2(-4, 63)
+NearestWoodStove = NodePath("../WoodStove3")
+
+[node name="WoodStove3" parent="Row1" instance=ExtResource("5_bfg1u")]
+position = Vector2(-42, 76)
+
+[node name="Row2" type="Node" parent="."]
+
+[node name="Elf4" parent="Row2" node_paths=PackedStringArray("NearestWoodStove") instance=ExtResource("4_hphow")]
+position = Vector2(-132, 190)
+NearestWoodStove = NodePath("../WoodStove4")
+
+[node name="WoodStove4" parent="Row2" instance=ExtResource("5_bfg1u")]
+position = Vector2(-170, 205)
+
+[node name="Elf5" parent="Row2" node_paths=PackedStringArray("NearestWoodStove") instance=ExtResource("4_hphow")]
+position = Vector2(-35, 143)
+NearestWoodStove = NodePath("../WoodStove5")
+
+[node name="WoodStove5" parent="Row2" instance=ExtResource("5_bfg1u")]
+position = Vector2(-75, 158)
+
+[node name="Elf6" parent="Row2" node_paths=PackedStringArray("NearestWoodStove") instance=ExtResource("4_hphow")]
+position = Vector2(61, 96)
+NearestWoodStove = NodePath("../WoodStove6")
+
+[node name="WoodStove6" parent="Row2" instance=ExtResource("5_bfg1u")]
+position = Vector2(23, 109)
+
+[node name="Row3" type="Node" parent="."]
+
+[node name="Elf7" parent="Row3" node_paths=PackedStringArray("NearestWoodStove") instance=ExtResource("4_hphow")]
+position = Vector2(-70, 219)
+NearestWoodStove = NodePath("../WoodStove7")
+
+[node name="WoodStove7" parent="Row3" instance=ExtResource("5_bfg1u")]
+position = Vector2(-108, 234)
+
+[node name="Elf8" parent="Row3" node_paths=PackedStringArray("NearestWoodStove") instance=ExtResource("4_hphow")]
+position = Vector2(27, 172)
+NearestWoodStove = NodePath("../WoodStove8")
+
+[node name="WoodStove8" parent="Row3" instance=ExtResource("5_bfg1u")]
+position = Vector2(-13, 187)
+
+[node name="Elf9" parent="Row3" node_paths=PackedStringArray("NearestWoodStove") instance=ExtResource("4_hphow")]
+position = Vector2(123, 125)
+NearestWoodStove = NodePath("../WoodStove9")
+
+[node name="WoodStove9" parent="Row3" instance=ExtResource("5_bfg1u")]
+position = Vector2(85, 138)

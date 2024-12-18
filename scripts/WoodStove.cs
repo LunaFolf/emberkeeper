@@ -7,6 +7,8 @@ public partial class WoodStove : Node2D
     [Export] public AnimatedSprite2D Sprite;
     [Export] public Timer Timer;
     [Export] public Label CoalCountLabel;
+    [Export] public AudioStreamPlayer2D FireSfxPlayer;
+    [Export] public Timer FireSfxTimer;
 
     [Export] public Area2D Area2D;
     [Export] public AnimationPlayer AnimationPlayer;
@@ -39,6 +41,10 @@ public partial class WoodStove : Node2D
         CoalLevel = MaxCoalLevel;
         Area2D.BodyEntered += OnBodyEntered;
         Area2D.BodyExited += OnBodyExited;
+
+        FireSfxTimer.Timeout += OnFireSfxTimerTimeout;
+
+        CoalLevel = GD.RandRange(0, MaxCoalLevel);
     }
 
     public void Interact(Player player)
@@ -46,9 +52,18 @@ public partial class WoodStove : Node2D
         if (player.CoalCount <= 0) return;
         if (CoalLevel >= MaxCoalLevel) return;
 
-        CoalLevel++;
+        CoalLevel = 5;
         player.CoalCount--;
         Timer.Start(); // Restart timer, so new coal doesn't burn out immediately
+    }
+
+    private void OnFireSfxTimerTimeout()
+    {
+        FireSfxTimer.WaitTime = GD.RandRange(3.7f, 13.7f);
+        FireSfxTimer.Start();
+
+        if (!IsWarm) return;
+        FireSfxPlayer.Play();
     }
 
     private void OnTimerTimeout()

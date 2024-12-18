@@ -33,6 +33,12 @@ public partial class Elf : Node2D
     [Export] public Area2D Area2D;
     [Export] public AnimationPlayer AnimationPlayer;
 
+    [Export] public AnimationPlayer NewGiftAnimationPlayer;
+
+    [Export] public AudioStreamPlayer2D NewPresentSfxPlayer;
+    [Export] public AudioStreamPlayer2D HammerSfxPlayer;
+    [Export] public Timer HammerSfxTimer;
+
     [Export] public AnimatedSprite2D Sprite;
 
     // TODO: Remove Debug labels
@@ -44,6 +50,8 @@ public partial class Elf : Node2D
         WorkTimer.Timeout += OnWorkTimerTimeout;
         Area2D.BodyEntered += OnBodyEntered;
         Area2D.BodyExited += OnBodyExited;
+
+        HammerSfxTimer.Timeout += OnHammerSfxTimerTimeout;
 
         StartColdTimer();
     }
@@ -98,8 +106,19 @@ public partial class Elf : Node2D
 
         if (_workProgress >= 100)
         {
+            NewGiftAnimationPlayer.Play("new_gift");
+            NewPresentSfxPlayer.Play();
             _workProgress = 0;
         }
+    }
+
+    private void OnHammerSfxTimerTimeout()
+    {
+        HammerSfxTimer.WaitTime = 1 + ColdLevel;
+        HammerSfxTimer.Start();
+
+        if (ColdLevel >= MaxColdLevel) return;
+        HammerSfxPlayer.Play();
     }
 
     private void OnBodyEntered(Node2D body)
